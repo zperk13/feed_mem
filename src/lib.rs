@@ -46,16 +46,16 @@ impl FeedMem {
 
     fn get_new_entries_from_bytes(&mut self, bytes: Bytes, do_trim: bool) -> Result<Vec<Entry>> {
         let entries = feed_rs::parser::parse(&bytes[..])?.entries;
-        let mut new_entries = Vec::new();
-        for entry in entries.iter() {
-            if !self.remembered_ids.contains(&entry.id) {
-                self.remembered_ids.push(entry.id.clone());
-                new_entries.push(entry.clone());
-            }
-        }
         if do_trim {
             self.remembered_ids
                 .retain(|id| entries.iter().map(|e| &e.id).any(|eid| eid == id));
+        }
+        let mut new_entries = Vec::new();
+        for entry in entries {
+            if !self.remembered_ids.contains(&entry.id) {
+                self.remembered_ids.push(entry.id.clone());
+                new_entries.push(entry);
+            }
         }
         Ok(new_entries)
     }
