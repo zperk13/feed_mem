@@ -1,6 +1,6 @@
 use anyhow::Result;
 use bytes::Bytes;
-use feed_rs::model::Entry;
+pub use feed_rs::model::Entry;
 #[cfg(feature = "serde")]
 pub use serde;
 
