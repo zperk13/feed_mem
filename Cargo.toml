@@ -1,6 +1,6 @@
 [package]
 name = "feed_mem"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/zperk13/feed_mem"
@@ -17,3 +17,6 @@ serde = {version = "1.0.147", optional=true}
 [features]
 blocking = ["reqwest/blocking"]
 serde = ["dep:serde"]
+
+# Reverses the Vec of new entries before returning them. New entries are usually returned newest to oldest, which can be undesirable
+auto_reverse = []

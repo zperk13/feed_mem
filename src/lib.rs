@@ -57,6 +57,8 @@ impl FeedMem {
                 new_entries.push(entry);
             }
         }
+        #[cfg(feature = "auto_reverse")]
+        new_entries.reverse();
         Ok(new_entries)
     }
 }
